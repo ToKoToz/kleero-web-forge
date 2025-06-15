@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Code, TrendingUp, Bot, ArrowRight, CheckCircle } from 'lucide-react';
@@ -73,7 +74,7 @@ const Index = () => {
         </div>
         <div className="grid gap-8 md:grid-cols-3">
           {services.map((service, index) => (
-            <Card key={service.title} className="bg-secondary/40 border-secondary animate-fade-in-up" style={{ animationDelay: `${0.5 + index * 0.2}s` }}>
+            <Card key={service.title} className="bg-secondary/40 border-secondary animate-fade-in-up transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" style={{ animationDelay: `${0.5 + index * 0.2}s` }}>
               <CardHeader className="flex flex-row items-center gap-4">
                 {service.icon}
                 <CardTitle>{service.title}</CardTitle>
@@ -86,33 +87,33 @@ const Index = () => {
         </div>
       </section>
       
-      <section className="grid md:grid-cols-2 gap-12 items-center animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
+      <section className="grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-4">
-          <h2 className="text-3xl font-bold tracking-tight">De la Stratégie à la Réalité Numérique</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-3xl font-bold tracking-tight animate-fade-in-up" style={{ animationDelay: '1.1s' }}>De la Stratégie à la Réalité Numérique</h2>
+          <p className="text-muted-foreground animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
             Nous ne nous contentons pas de construire des sites web. Nous créons des écosystèmes digitaux performants qui alimentent votre croissance. Notre approche est centrée sur des résultats mesurables et un partenariat à long terme.
           </p>
           <ul className="space-y-3 pt-2">
-            <li className="flex items-center">
-              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
+            <li className="flex items-center animate-fade-in-up group" style={{ animationDelay: '1.3s' }}>
+              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 transition-transform duration-300 group-hover:scale-125" />
               <span>Solutions sur-mesure adaptées à vos objectifs</span>
             </li>
-            <li className="flex items-center">
-              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
+            <li className="flex items-center animate-fade-in-up group" style={{ animationDelay: '1.4s' }}>
+              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 transition-transform duration-300 group-hover:scale-125" />
               <span>Expertise technique de pointe et veille continue</span>
             </li>
-            <li className="flex items-center">
-              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
+            <li className="flex items-center animate-fade-in-up group" style={{ animationDelay: '1.5s' }}>
+              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 transition-transform duration-300 group-hover:scale-125" />
               <span>Communication transparente et accompagnement dédié</span>
             </li>
           </ul>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
           <img src="photo-1498050108023-c5249f4df085" alt="Bureau avec un ordinateur portable affichant du code" className="rounded-lg shadow-2xl aspect-video object-cover" />
         </div>
       </section>
 
-      <section className="animate-fade-in-up" style={{ animationDelay: '1.1s' }}>
+      <section className="animate-fade-in-up" style={{ animationDelay: '1.7s' }}>
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight">Ce que nos clients disent de nous</h2>
           <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
@@ -130,7 +131,7 @@ const Index = () => {
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1 h-full">
-                  <Card className="flex flex-col justify-between h-full bg-secondary/40 border-secondary">
+                  <Card className="flex flex-col justify-between h-full bg-secondary/40 border-secondary transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                     <CardContent className="p-6">
                       <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
                     </CardContent>
@@ -155,7 +156,7 @@ const Index = () => {
         </Carousel>
       </section>
       
-      <section className="text-center bg-secondary/40 rounded-lg p-8 md:p-16 animate-fade-in-up" style={{ animationDelay: '1.3s' }}>
+      <section className="text-center bg-secondary/40 rounded-lg p-8 md:p-16 animate-fade-in-up" style={{ animationDelay: '1.9s' }}>
         <h2 className="text-3xl font-bold tracking-tight">Prêt à lancer votre projet ?</h2>
         <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
           Discutons de vos ambitions et voyons comment nous pouvons vous aider à les atteindre.
