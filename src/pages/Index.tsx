@@ -12,7 +12,7 @@ const services = [
     description: "Des sites performants, responsives et 100% pensés pour vos objectifs. Que ce soit une vitrine, un portfolio ou un CMS dynamique, chaque projet est conçu pour allier impact visuel, efficacité et autonomie.",
     features: ["100% sur mesure", "Solutions E-Commerce", "Responsive Design", "Integration CMS"],
     cta: "Créez votre site",
-    link: "/services",
+    link: "/services/creation-web",
     gradient: "from-blue-500/10 to-cyan-500/10",
     borderGradient: "from-blue-500/20 to-cyan-500/20"
   },
@@ -22,7 +22,7 @@ const services = [
     description: "Optimisez votre visibilité durablement. Nous combinons SEO technique, contenu, netlinking et campagnes Ads pour faire décoller votre trafic et générer des leads qualifiés.",
     features: ["Optimisation technique", "Wireframes & Prototypes", "Netlinking stratégique", "Campagnes sur-mesure"],
     cta: "Optimiser votre SEO",
-    link: "/services",
+    link: "/services/optimisation-seo",
     gradient: "from-green-500/10 to-emerald-500/10",
     borderGradient: "from-green-500/20 to-emerald-500/20"
   },
@@ -32,7 +32,7 @@ const services = [
     description: "Automatisez vos tâches répétitives et libérez du temps. De la publication d'annonces à la synchronisation d'outils, nous créons des flux sur mesure avec n8n, Make, Zapier ou des scripts personnalisés.",
     features: ["Automatisations sur mesure", "Synchronisation d'outils", "Gain de temps quotidien", "Fiabilité et contrôle"],
     cta: "Explorez l'automatisation",
-    link: "/automations",
+    link: "/services/automatisation-llmo",
     gradient: "from-purple-500/10 to-pink-500/10",
     borderGradient: "from-purple-500/20 to-pink-500/20"
   }
@@ -126,8 +126,36 @@ const stats = [
 const Index = () => {
   return (
     <div className="relative overflow-hidden">
-      <div className="space-y-32">
-        {/* Enhanced Hero Section */}
+      {/* Enhanced animated background */}
+      <div className="fixed inset-0 -z-20">
+        {/* Animated gradient mesh */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-cyan-500/5 animate-pulse-glow" />
+        
+        {/* Floating geometric shapes */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-primary/10 to-cyan-500/10 rounded-full blur-3xl animate-float opacity-60" style={{ animationDuration: '20s' }} />
+        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-float opacity-60" style={{ animationDuration: '25s', animationDelay: '5s' }} />
+        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-full blur-3xl animate-float opacity-60" style={{ animationDuration: '30s', animationDelay: '10s' }} />
+        <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-full blur-3xl animate-float opacity-60" style={{ animationDuration: '22s', animationDelay: '15s' }} />
+        
+        {/* Animated particles */}
+        <div className="absolute top-1/5 left-1/5 w-2 h-2 bg-primary/30 rounded-full animate-float" style={{ animationDuration: '8s', animationDelay: '0s' }} />
+        <div className="absolute top-2/5 right-1/5 w-1.5 h-1.5 bg-purple-500/30 rounded-full animate-float" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+        <div className="absolute top-3/5 left-2/5 w-1 h-1 bg-cyan-500/30 rounded-full animate-float" style={{ animationDuration: '12s', animationDelay: '4s' }} />
+        <div className="absolute bottom-1/5 right-2/5 w-2.5 h-2.5 bg-green-500/30 rounded-full animate-float" style={{ animationDuration: '9s', animationDelay: '6s' }} />
+        <div className="absolute bottom-2/5 left-1/6 w-1.5 h-1.5 bg-pink-500/30 rounded-full animate-float" style={{ animationDuration: '11s', animationDelay: '8s' }} />
+        
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `
+            linear-gradient(rgba(0,152,177,0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,152,177,0.3) 1px, transparent 1px)
+          `,
+          backgroundSize: '100px 100px'
+        }} />
+      </div>
+
+      <div className="space-y-32 relative">
+        {/* Enhanced Hero Section with improved animations */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
           {/* Background Image with Enhanced Overlay */}
           <div className="absolute inset-0 z-0">
@@ -138,46 +166,53 @@ const Index = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-br from-background/40 via-background/70 to-background/90" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-purple-500/10" />
+            
+            {/* Additional animated overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent animate-fade-in opacity-50" style={{ animationDuration: '3s', animationIterationCount: 'infinite', animationDirection: 'alternate' }} />
           </div>
           
-          {/* Floating Elements */}
+          {/* Enhanced Floating Elements */}
           <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float" />
           <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-purple-500/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
           <div className="absolute bottom-1/3 left-1/3 w-40 h-40 bg-cyan-500/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
           
+          {/* New animated elements */}
+          <div className="absolute top-1/5 right-1/5 w-24 h-24 bg-green-500/5 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s', animationDuration: '8s' }} />
+          <div className="absolute bottom-1/5 left-1/5 w-36 h-36 bg-pink-500/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s', animationDuration: '12s' }} />
+          
           <div className="relative z-10 container-custom text-center">
             <div className="max-w-5xl mx-auto space-y-8">
-              {/* Badge de présentation */}
+              {/* Badge de présentation avec animation améliorée */}
               <div className="animate-bounce-in opacity-0" style={{ animationDelay: '0.2s' }}>
-                <Badge variant="secondary" className="glass-card px-4 py-2 text-sm font-medium mb-6">
-                  <Sparkles className="w-4 h-4 mr-2" />
+                <Badge variant="secondary" className="glass-card px-4 py-2 text-sm font-medium mb-6 hover:scale-105 transition-transform duration-300">
+                  <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
                   L'excellence digitale à votre portée
                 </Badge>
               </div>
               
-              {/* Titre principal avec typographie améliorée */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-8 animate-fade-in-up opacity-0" style={{ animationDelay: '0.4s' }}>
+              {/* Titre principal avec typographie améliorée et animation */}
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-8 animate-fade-in-up opacity-0 hover:scale-105 transition-transform duration-500" style={{ animationDelay: '0.4s' }}>
                 Façonnez votre présence
                 <br />
-                <span className="gradient-text">digitale</span>
+                <span className="gradient-text animate-pulse-glow">digitale</span>
               </h1>
               
-              {/* Sous-titre avec meilleure lisibilité */}
+              {/* Sous-titre avec meilleure lisibilité et animation */}
               <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed font-light animate-fade-in-up opacity-0" style={{ animationDelay: '0.6s' }}>
                 Nous construisons des sites web sur mesure, automatisons vos tâches clés et boostons votre visibilité en ligne avec des solutions
-                <span className="text-primary font-semibold"> concrètes, efficaces et pensées pour durer.</span>
+                <span className="text-primary font-semibold animate-pulse"> concrètes, efficaces et pensées pour durer.</span>
               </p>
               
-              {/* CTA amélioré */}
+              {/* CTA amélioré avec animations */}
               <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8 animate-fade-in-up opacity-0" style={{ animationDelay: '0.8s' }}>
-                <Button size="lg" asChild className="btn-primary px-8 py-4 text-lg hover-lift group">
+                <Button size="lg" asChild className="btn-primary px-8 py-4 text-lg hover-lift group hover:shadow-2xl hover:shadow-primary/25 transition-all duration-300">
                   <NavLink to="/contact">
                     <Zap className="mr-2 h-5 w-5 group-hover:animate-pulse" />
                     Commencer dès maintenant
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                   </NavLink>
                 </Button>
-                <Button variant="outline" size="lg" asChild className="glass-card px-8 py-4 text-lg hover-lift border-white/30 text-white hover:bg-white/10">
+                <Button variant="outline" size="lg" asChild className="glass-card px-8 py-4 text-lg hover-lift border-white/30 text-white hover:bg-white/10 hover:scale-105 transition-all duration-300">
                   <NavLink to="/services">
                     Découvrir nos services
                   </NavLink>
@@ -187,8 +222,13 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Enhanced Stats Section */}
-        <section className="container-custom section-padding">
+        {/* Enhanced Stats Section with improved animations */}
+        <section className="container-custom section-padding relative">
+          {/* Background decoration */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
+          </div>
+          
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-slide-in-left opacity-0" style={{ animationDelay: '0.2s' }}>
               <div className="space-y-4">
@@ -216,7 +256,7 @@ const Index = () => {
             
             <div className="grid gap-6">
               {stats.map((stat, index) => (
-                <Card key={stat.title} className={`glass-card hover-lift hover-glow group transition-all duration-500 bg-gradient-to-br ${stat.gradient} border-0 animate-slide-in-right opacity-0`} style={{ animationDelay: `${0.4 + index * 0.2}s` }}>
+                <Card key={stat.title} className={`glass-card hover-lift hover-glow group transition-all duration-500 bg-gradient-to-br ${stat.gradient} border-0 animate-slide-in-right opacity-0 hover:scale-105`} style={{ animationDelay: `${0.4 + index * 0.2}s` }}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
                     <div className="space-y-2">
                       <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{stat.title}</CardTitle>
@@ -240,8 +280,14 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Enhanced Services Section */}
-        <section className="container-custom section-padding">
+        {/* Enhanced Services Section with better animations */}
+        <section className="container-custom section-padding relative">
+          {/* Background decoration */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '15s' }} />
+            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '18s', animationDelay: '5s' }} />
+          </div>
+          
           <div className="text-center mb-20 animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
             <Badge variant="secondary" className="mb-6">
               <Code className="w-4 h-4 mr-2" />
@@ -258,7 +304,7 @@ const Index = () => {
           
           <div className="grid gap-8 lg:grid-cols-3">
             {services.map((service, index) => (
-              <Card key={service.title} className={`glass-card group bg-gradient-to-br ${service.gradient} backdrop-blur-sm border-0 p-8 transition-all duration-500 hover-lift hover:shadow-2xl hover:shadow-primary/20 animate-fade-in-scale opacity-0 relative overflow-hidden`} style={{ animationDelay: `${0.4 + index * 0.2}s` }}>
+              <Card key={service.title} className={`glass-card group bg-gradient-to-br ${service.gradient} backdrop-blur-sm border-0 p-8 transition-all duration-500 hover-lift hover:shadow-2xl hover:shadow-primary/20 animate-fade-in-scale opacity-0 relative overflow-hidden hover:scale-105`} style={{ animationDelay: `${0.4 + index * 0.2}s` }}>
                 {/* Gradient border effect */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.borderGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg`} />
                 <div className="relative z-10 bg-background/95 rounded-lg p-8 h-full flex flex-col">
@@ -293,7 +339,13 @@ const Index = () => {
         </section>
 
         {/* Enhanced Approach Section */}
-        <section className="container-custom section-padding">
+        <section className="container-custom section-padding relative">
+          {/* Background decoration */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/3 left-0 w-64 h-64 bg-green-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '20s' }} />
+            <div className="absolute bottom-1/3 right-0 w-56 h-56 bg-cyan-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '22s', animationDelay: '8s' }} />
+          </div>
+          
           <div className="text-center mb-20 animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
             <Badge variant="secondary" className="mb-6">
               <Target className="w-4 h-4 mr-2" />
@@ -328,7 +380,12 @@ const Index = () => {
         </section>
 
         {/* Enhanced Projects Section */}
-        <section className="container-custom section-padding">
+        <section className="container-custom section-padding relative">
+          {/* Background decoration */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/4 right-1/4 w-88 h-88 bg-orange-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '25s' }} />
+          </div>
+          
           <div className="text-center mb-20 animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
             <Badge variant="secondary" className="mb-6">
               <Star className="w-4 h-4 mr-2" />
@@ -383,7 +440,12 @@ const Index = () => {
         </section>
         
         {/* Enhanced Team Section */}
-        <section className="container-custom section-padding">
+        <section className="container-custom section-padding relative">
+          {/* Background decoration */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/5 to-purple-500/5 rounded-full blur-3xl animate-pulse-glow" />
+          </div>
+          
           <div className="text-center mb-20 animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
             <Badge variant="secondary" className="mb-6">
               <Users className="w-4 h-4 mr-2" />

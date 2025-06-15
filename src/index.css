@@ -110,6 +110,20 @@
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-glow;
   }
+
+  /* Enhanced interactive elements */
+  .interactive-card {
+    @apply transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl;
+  }
+  
+  /* Floating animation variants */
+  .float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .float-fast {
+    animation: float 4s ease-in-out infinite;
+  }
 }
 
 @layer utilities {
@@ -136,6 +150,19 @@
     background-size: 20px 20px;
   }
   
+  /* Enhanced background patterns */
+  .pattern-dots {
+    background-image: radial-gradient(circle, rgba(0,152,177,0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .pattern-grid {
+    background-image: 
+      linear-gradient(rgba(0,152,177,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,152,177,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  
   /* Scrollbar custom */
   .scrollbar-thin {
     scrollbar-width: thin;
@@ -153,5 +180,51 @@
   .scrollbar-thin::-webkit-scrollbar-thumb {
     background-color: hsl(var(--primary));
     border-radius: 20px;
+  }
+
+  /* Advanced animation utilities */
+  .animate-gradient {
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s infinite;
+  }
+  
+  .animate-sway {
+    animation: sway 3s ease-in-out infinite;
+  }
+}
+
+/* Additional keyframes for enhanced animations */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Responsive enhancements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-bounce-gentle,
+  .animate-sway {
+    animation: none;
   }
 }
