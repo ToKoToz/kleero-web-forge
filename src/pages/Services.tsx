@@ -113,11 +113,21 @@ const Services = () => {
                         {/* Call to Action */}
                         <div className="pt-4">
                           <Button 
+                            asChild
                             variant="outline" 
                             className="group/btn bg-background/50 backdrop-blur-sm border-primary/30 hover:border-primary hover:bg-primary/5 transition-all duration-300"
                           >
-                            En savoir plus
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                            {index === 0 ? (
+                              <NavLink to="/services/creation-web">
+                                En savoir plus
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                              </NavLink>
+                            ) : (
+                              <span>
+                                En savoir plus
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                              </span>
+                            )}
                           </Button>
                         </div>
                       </div>
@@ -139,9 +149,11 @@ const Services = () => {
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                   Discutons de votre projet et découvrons ensemble comment nos services peuvent propulser votre entreprise vers de nouveaux sommets.
                 </p>
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold px-8 py-3 rounded-full shadow-primary/25 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                  Démarrons votre projet
-                  <Sparkles className="w-5 h-5 ml-2" />
+                <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold px-8 py-3 rounded-full shadow-primary/25 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                  <NavLink to="/contact">
+                    Démarrons votre projet
+                    <Sparkles className="w-5 h-5 ml-2" />
+                  </NavLink>
                 </Button>
               </div>
             </div>
