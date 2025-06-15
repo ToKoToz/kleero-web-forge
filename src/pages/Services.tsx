@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Code, TrendingUp, Bot, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -128,10 +129,10 @@ const Services = () => {
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
                               </NavLink>
                             ) : (
-                              <span>
+                              <NavLink to="/services/automatisation-llmo">
                                 En savoir plus
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                              </span>
+                              </NavLink>
                             )}
                           </Button>
                         </div>
