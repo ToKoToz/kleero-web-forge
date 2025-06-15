@@ -10,18 +10,31 @@ import AdminContactMessages from '@/components/admin/AdminContactMessages';
 import AdminAutomations from '@/components/admin/AdminAutomations';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Shield, MessageSquare, Zap } from 'lucide-react';
+import type { User } from '@supabase/supabase-js';
 
 const Admin = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    const adminAuth = localStorage.getItem('admin_authenticated');
-    if (adminAuth === 'true') {
-      setIsAuthenticated(true);
-    }
+    // Vérifier la session actuelle
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
+
+    checkUser();
+
+    // Écouter les changements d'authentification
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -29,24 +42,17 @@ const Admin = () => {
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase
-        .from('admin_users')
-        .select('*')
-        .eq('email', email)
-        .single();
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-      if (error || !data) {
+      if (error) {
         toast.error('Identifiants incorrects');
         return;
       }
 
-      if (password === 'admin123') {
-        setIsAuthenticated(true);
-        localStorage.setItem('admin_authenticated', 'true');
-        toast.success('Connexion réussie');
-      } else {
-        toast.error('Identifiants incorrects');
-      }
+      toast.success('Connexion réussie');
     } catch (error) {
       console.error('Erreur de connexion:', error);
       toast.error('Erreur de connexion');
@@ -55,15 +61,19 @@ const Admin = () => {
     }
   };
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('admin_authenticated');
-    setEmail('');
-    setPassword('');
-    toast.success('Déconnexion réussie');
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      setEmail('');
+      setPassword('');
+      toast.success('Déconnexion réussie');
+    } catch (error) {
+      console.error('Erreur de déconnexion:', error);
+      toast.error('Erreur de déconnexion');
+    }
   };
 
-  if (!isAuthenticated) {
+  if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/5 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
