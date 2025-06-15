@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   Dialog,
@@ -7,7 +8,7 @@ import {
 } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Play, Clock, Target, CheckCircle, FileText, Award, Wrench, Video } from 'lucide-react';
+import { Play, Clock, Target, CheckCircle, FileText, Award, Wrench, Video, X } from 'lucide-react';
 import MediaSlider from './MediaSlider';
 
 interface MediaItem {

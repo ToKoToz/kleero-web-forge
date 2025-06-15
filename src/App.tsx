@@ -11,6 +11,7 @@ import Automations from "./pages/Automations";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import Preview from "./pages/Preview";
 import WebCreationDetails from "./pages/WebCreationDetails";
 import SEOOptimizationDetails from "./pages/SEOOptimizationDetails";
 import AutomationDetails from "./pages/AutomationDetails";
@@ -26,6 +27,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/admin" element={<Admin />} />
+          <Route path="/preview" element={<Preview />} />
           <Route path="/*" element={
             <Layout>
               <Routes>
