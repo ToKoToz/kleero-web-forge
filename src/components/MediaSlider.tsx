@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/carousel';
 import { Badge } from '@/components/ui/badge';
 import { Image as ImageIcon } from 'lucide-react';
-import VideoPlayer from './VideoPlayer';
+import VideoPlayer, { VideoPlayerRef } from './VideoPlayer';
 
 interface MediaItem {
   id: string;
@@ -26,7 +26,7 @@ interface MediaSliderProps {
 const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
-  const videoRefs = useRef<{ [key: string]: { stopVideo: () => void } }>({});
+  const videoRefs = useRef<{ [key: string]: VideoPlayerRef }>({});
 
   useEffect(() => {
     if (!api) return;
@@ -46,10 +46,12 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
     };
 
     api.on('select', onSelect);
-    return () => api.off('select', onSelect);
+    return () => {
+      api.off('select', onSelect);
+    };
   }, [api, medias]);
 
-  const registerVideoRef = (mediaId: string, ref: any) => {
+  const registerVideoRef = (mediaId: string, ref: VideoPlayerRef | null) => {
     if (ref) {
       videoRefs.current[mediaId] = ref;
     }

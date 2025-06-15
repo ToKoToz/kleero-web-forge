@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Play, Pause, Volume2, VolumeX, Maximize, SkipBack, SkipForward } from 'lucide-react';
@@ -12,7 +12,11 @@ interface VideoPlayerProps {
   onPlay?: () => void;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className, onPause, onPlay }) => {
+export interface VideoPlayerRef {
+  stopVideo: () => void;
+}
+
+const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(({ src, poster, className, onPause, onPlay }, ref) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -33,9 +37,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className, onPau
   }, [onPause]);
 
   // Exposer la fonction stopVideo au parent
-  React.useImperativeHandle(React.forwardRef(() => videoRef.current), () => ({
+  useImperativeHandle(ref, () => ({
     stopVideo
-  }));
+  }), [stopVideo]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -256,6 +260,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className, onPau
       </div>
     </div>
   );
-};
+});
+
+VideoPlayer.displayName = 'VideoPlayer';
 
 export default VideoPlayer;
