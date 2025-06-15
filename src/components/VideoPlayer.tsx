@@ -8,9 +8,11 @@ interface VideoPlayerProps {
   src: string;
   poster?: string;
   className?: string;
+  onPause?: () => void;
+  onPlay?: () => void;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className, onPause, onPlay }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -18,24 +20,48 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className }) => 
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [isTimeSliderDragging, setIsTimeSliderDragging] = useState(false);
+
+  // Fonction pour arrêter la vidéo (appelée depuis le parent)
+  const stopVideo = React.useCallback(() => {
+    const video = videoRef.current;
+    if (video && !video.paused) {
+      video.pause();
+      setIsPlaying(false);
+      onPause?.();
+    }
+  }, [onPause]);
+
+  // Exposer la fonction stopVideo au parent
+  React.useImperativeHandle(React.forwardRef(() => videoRef.current), () => ({
+    stopVideo
+  }));
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const updateTime = () => setCurrentTime(video.currentTime);
+    const updateTime = () => {
+      if (!isTimeSliderDragging) {
+        setCurrentTime(video.currentTime);
+      }
+    };
     const updateDuration = () => setDuration(video.duration);
+    const handleEnded = () => {
+      setIsPlaying(false);
+      onPause?.();
+    };
 
     video.addEventListener('timeupdate', updateTime);
     video.addEventListener('loadedmetadata', updateDuration);
-    video.addEventListener('ended', () => setIsPlaying(false));
+    video.addEventListener('ended', handleEnded);
 
     return () => {
       video.removeEventListener('timeupdate', updateTime);
       video.removeEventListener('loadedmetadata', updateDuration);
-      video.removeEventListener('ended', () => setIsPlaying(false));
+      video.removeEventListener('ended', handleEnded);
     };
-  }, []);
+  }, [isTimeSliderDragging, onPause]);
 
   const togglePlay = () => {
     const video = videoRef.current;
@@ -43,19 +69,30 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className }) => 
 
     if (isPlaying) {
       video.pause();
+      setIsPlaying(false);
+      onPause?.();
     } else {
       video.play();
+      setIsPlaying(true);
+      onPlay?.();
     }
-    setIsPlaying(!isPlaying);
   };
 
-  const handleProgressChange = (value: number[]) => {
+  const handleTimeSliderChange = (value: number[]) => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !duration) return;
 
     const newTime = (value[0] / 100) * duration;
     video.currentTime = newTime;
     setCurrentTime(newTime);
+  };
+
+  const handleTimeSliderStart = () => {
+    setIsTimeSliderDragging(true);
+  };
+
+  const handleTimeSliderEnd = () => {
+    setIsTimeSliderDragging(false);
   };
 
   const handleVolumeChange = (value: number[]) => {
@@ -138,17 +175,25 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className }) => 
         )}
 
         {/* Contrôles inférieurs */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2">
-          {/* Barre de progression */}
-          <Slider
-            value={[progress]}
-            onValueChange={handleProgressChange}
-            max={100}
-            step={0.1}
-            className="w-full"
-          />
+        <div className="absolute bottom-0 left-0 right-0 p-4 space-y-3">
+          {/* Barre de progression temporelle */}
+          <div className="space-y-1">
+            <Slider
+              value={[progress]}
+              onValueChange={handleTimeSliderChange}
+              onPointerDown={handleTimeSliderStart}
+              onPointerUp={handleTimeSliderEnd}
+              max={100}
+              step={0.1}
+              className="w-full [&_.relative]:bg-white/30 [&_.absolute]:bg-red-500"
+            />
+            <div className="flex justify-between text-xs text-white/80">
+              <span>{formatTime(currentTime)}</span>
+              <span>{formatTime(duration)}</span>
+            </div>
+          </div>
 
-          {/* Contrôles */}
+          {/* Contrôles de lecture */}
           <div className="flex items-center justify-between text-white">
             <div className="flex items-center space-x-2">
               <Button
@@ -191,16 +236,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, poster, className }) => 
                   value={[isMuted ? 0 : volume * 100]}
                   onValueChange={handleVolumeChange}
                   max={100}
-                  className="w-20"
+                  className="w-20 [&_.relative]:bg-white/30 [&_.absolute]:bg-white"
                 />
               </div>
             </div>
 
             <div className="flex items-center space-x-2">
-              <span className="text-sm">
-                {formatTime(currentTime)} / {formatTime(duration)}
-              </span>
-              
               <Button
                 variant="ghost"
                 size="sm"

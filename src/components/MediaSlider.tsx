@@ -1,15 +1,15 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselApi,
 } from '@/components/ui/carousel';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react';
 import VideoPlayer from './VideoPlayer';
 
 interface MediaItem {
@@ -25,6 +25,35 @@ interface MediaSliderProps {
 
 const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const videoRefs = useRef<{ [key: string]: { stopVideo: () => void } }>({});
+
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      const newIndex = api.selectedScrollSnap();
+      
+      // Arrêter toutes les vidéos sauf celle de l'index actuel
+      Object.keys(videoRefs.current).forEach((mediaId) => {
+        const mediaIndex = medias.findIndex(m => m.id === mediaId);
+        if (mediaIndex !== newIndex && videoRefs.current[mediaId]) {
+          videoRefs.current[mediaId].stopVideo();
+        }
+      });
+      
+      setCurrentIndex(newIndex);
+    };
+
+    api.on('select', onSelect);
+    return () => api.off('select', onSelect);
+  }, [api, medias]);
+
+  const registerVideoRef = (mediaId: string, ref: any) => {
+    if (ref) {
+      videoRefs.current[mediaId] = ref;
+    }
+  };
 
   if (!medias || medias.length === 0) {
     return null;
@@ -40,7 +69,11 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
       </div>
 
       <div className="relative">
-        <Carousel className="w-full" opts={{ loop: true }}>
+        <Carousel 
+          className="w-full" 
+          opts={{ loop: true }}
+          setApi={setApi}
+        >
           <CarouselContent>
             {medias.map((media, index) => (
               <CarouselItem key={media.id}>
@@ -59,6 +92,7 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
                       />
                     ) : (
                       <VideoPlayer
+                        ref={(ref) => registerVideoRef(media.id, ref)}
                         src={media.url}
                         className="w-full h-full"
                       />
@@ -114,7 +148,7 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
                     ? 'bg-primary scale-110' 
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => api?.scrollTo(index)}
               />
             ))}
           </div>
