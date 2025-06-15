@@ -83,12 +83,12 @@ const team = [
 const Index = () => {
   return (
     <div className="space-y-20 sm:space-y-32">
-      <section className="relative text-center animate-fade-in-up overflow-hidden rounded-lg shadow-2xl" style={{ animationDelay: '0.1s' }}>
+      <section className="relative text-center animate-fade-in-up overflow-hidden rounded-lg shadow-2xl min-h-screen flex items-center" style={{ animationDelay: '0.1s' }}>
         <div className="absolute inset-0">
           <img src="/lovable-uploads/d984d06a-2b9a-4827-bcd3-73902741e0bb.png" alt="Paysage de montagne brumeux" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-background/70" />
         </div>
-        <div className="relative z-10 px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+        <div className="relative z-10 px-4 py-24 sm:px-6 lg:px-8 w-full">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-white">
             Façonnez votre présence digitale.
             <br />
