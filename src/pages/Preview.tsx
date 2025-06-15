@@ -10,24 +10,33 @@ const Preview = () => {
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
-      <div className="relative z-10 text-center w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen">
+      <div className="relative z-10 text-center w-full max-w-7xl mx-auto flex flex-col justify-center items-center min-h-screen">
+        {/* Logo */}
+        <div className="animate-fade-in-up mb-8">
+          <img 
+            src="/lovable-uploads/128d0082-c3f0-4b5d-ab1d-02db01e617fd.png" 
+            alt="Kleero Logo" 
+            className="w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 mx-auto drop-shadow-2xl"
+          />
+        </div>
+
         {/* Main logo/title */}
-        <div>
-          <h1 className="text-[10rem] md:text-[16rem] lg:text-[20rem] font-bold gradient-text animate-fade-in-up leading-none">
+        <div className="animate-fade-in-up animate-delayed-1">
+          <h1 className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold gradient-text leading-none">
             Kleero
           </h1>
         </div>
 
         {/* Catchphrase - collé au titre */}
         <div className="animate-fade-in-up animate-delayed-2 -mt-4">
-          <p className="text-4xl md:text-6xl lg:text-8xl font-bold gradient-text leading-tight">
+          <p className="text-3xl md:text-5xl lg:text-6xl font-bold gradient-text leading-tight">
             L'avenir de l'automatisation
           </p>
         </div>
 
         {/* Bottom section - collé au catchphrase */}
         <div className="animate-fade-in-up animate-delayed-3 -mt-2">
-          <p className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground font-light">
+          <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light">
             Transformez votre entreprise
           </p>
         </div>
