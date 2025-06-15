@@ -6,47 +6,55 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    --foreground: 222 47% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
+    --card-foreground: 222 47% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 191 98% 35%; /* #0098b1 */
+    --popover-foreground: 222 47% 15%;
+    --primary: 191 98% 35%; /* #0098b1 - Cyan vibrant */
     --primary-foreground: 355.7 100% 97.3%;
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
     --muted: 220 14.3% 95.9%;
     --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --accent: 191 98% 85%; /* Cyan clair pour les accents */
+    --accent-foreground: 222 47% 15%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
-    --radius: 0.5rem;
+    --ring: 191 98% 35%;
+    --radius: 0.75rem;
+    
+    /* Gradients custom */
+    --gradient-primary: linear-gradient(135deg, hsl(191 98% 35%) 0%, hsl(215 98% 45%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(220 14.3% 95.9%) 0%, hsl(220 14.3% 85%) 100%);
   }
 
   .dark {
-    --background: 222 47% 11%; /* Un bleu nuit très sombre */
+    --background: 222 47% 8%; /* Bleu nuit très profond */
     --foreground: 210 20% 98%;
-    --card: 222 47% 11%;
+    --card: 222 47% 10%;
     --card-foreground: 210 20% 98%;
-    --popover: 222 47% 11%;
+    --popover: 222 47% 10%;
     --popover-foreground: 210 20% 98%;
-    --primary: 191 98% 35%; /* #0098b1 */
-    --primary-foreground: 210 20% 98%;
-    --secondary: 215 28% 17%;
+    --primary: 191 98% 45%; /* Plus lumineux en mode sombre */
+    --primary-foreground: 222 47% 8%;
+    --secondary: 215 28% 15%;
     --secondary-foreground: 210 20% 98%;
-    --muted: 215 28% 17%;
-    --muted-foreground: 217 19% 45%;
-    --accent: 215 28% 17%;
+    --muted: 215 28% 15%;
+    --muted-foreground: 217 19% 55%;
+    --accent: 191 98% 25%; /* Cyan plus sombre */
     --accent-foreground: 210 20% 98%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 20% 98%;
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
-    --ring: 191 98% 35%;
+    --border: 215 28% 18%;
+    --input: 215 28% 18%;
+    --ring: 191 98% 45%;
+    
+    /* Gradients sombres */
+    --gradient-primary: linear-gradient(135deg, hsl(191 98% 45%) 0%, hsl(215 98% 55%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(215 28% 15%) 0%, hsl(215 28% 25%) 100%);
   }
 }
 
@@ -56,5 +64,94 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 32;
+    scroll-behavior: smooth;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glassmorphism effect */
+  .glass-card {
+    @apply bg-background/80 backdrop-blur-xl border border-white/20 shadow-large;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-primary/80 to-blue-600 bg-clip-text text-transparent;
+  }
+  
+  /* Button avec effet */
+  .btn-primary {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-blue-600 text-primary-foreground font-semibold;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/80 before:to-blue-600/80;
+    @apply before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100;
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-24 lg:py-32;
+  }
+  
+  /* Container amélioré */
+  .container-custom {
+    @apply container mx-auto px-6 lg:px-8;
+  }
+  
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-large;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-glow;
+  }
+}
+
+@layer utilities {
+  /* Animations personnalisées */
+  .animate-delayed-1 {
+    animation-delay: 0.1s;
+  }
+  .animate-delayed-2 {
+    animation-delay: 0.2s;
+  }
+  .animate-delayed-3 {
+    animation-delay: 0.3s;
+  }
+  .animate-delayed-4 {
+    animation-delay: 0.4s;
+  }
+  .animate-delayed-5 {
+    animation-delay: 0.5s;
+  }
+  
+  /* Textures et patterns */
+  .texture-grain {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+  
+  /* Scrollbar custom */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) hsl(var(--background));
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--primary));
+    border-radius: 20px;
   }
 }
