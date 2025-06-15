@@ -27,7 +27,7 @@ const Index = () => {
     <div className="space-y-20 sm:space-y-32">
       <section className="text-center animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-          Nous transformons vos idées en réalité numérique.
+          Façonnez votre présence digitale.
         </h1>
         <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
           Kleero est votre partenaire stratégique pour la création de sites web, le référencement et l'intégration d'intelligence artificielle.
@@ -37,7 +37,7 @@ const Index = () => {
             <NavLink to="/services">Découvrir nos services</NavLink>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <NavLink to="/portfolio">Voir nos réalisations <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
+            <NavLink to="/automations">Nos automatisations <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
           </Button>
         </div>
       </section>
