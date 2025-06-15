@@ -1,49 +1,84 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Code, TrendingUp, Bot, ArrowRight, CheckCircle } from 'lucide-react';
+import { Code, TrendingUp, Bot, ArrowRight, CheckCircle, Briefcase, Target, Users } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const services = [
   {
     icon: <Code className="w-8 h-8 text-primary" />,
-    title: "Création Web sur Mesure",
-    description: "Des sites web performants, esthétiques et optimisés pour convertir vos visiteurs en clients."
+    title: "Création de site web",
+    description: "Des sites performants, responsives et 100% pensés pour vos objectifs. Que ce soit une vitrine, un portfolio ou un CMS dynamique, chaque projet est conçu pour allier impact visuel, efficacité et autonomie.",
+    features: ["100% sur mesure", "Solutions E-Commerce", "Responsive Design", "Integration CMS"],
+    cta: "Créez votre site",
+    link: "/services"
   },
   {
     icon: <TrendingUp className="w-8 h-8 text-primary" />,
     title: "Optimisation SEO",
-    description: "Augmentez votre visibilité sur les moteurs de recherche et attirez un trafic qualifié durablement."
+    description: "Optimisez votre visibilité durablement. Nous combinons SEO technique, contenu, netlinking et campagnes Ads pour faire décoller votre trafic et générer des leads qualifiés.",
+    features: ["Optimisation technique", "Wireframes & Prototypes", "Netlinking stratégique", "Campagnes sur-mesure"],
+    cta: "Optimiser votre SEO",
+    link: "/services"
   },
   {
     icon: <Bot className="w-8 h-8 text-primary" />,
-    title: "Automatisation & LLMO",
-    description: "Intégrez l'intelligence artificielle pour optimiser vos processus et créer des expériences uniques."
+    title: "Systèmes d'automatisations",
+    description: "Automatisez vos tâches répétitives et libérez du temps. De la publication d’annonces à la synchronisation d’outils, nous créons des flux sur mesure avec n8n, Make, Zapier ou des scripts personnalisés.",
+    features: ["Automatisations sur mesure", "Synchronisation d’outils", "Gain de temps quotidien", "Fiabilité et contrôle"],
+    cta: "Explorez l'automatisation",
+    link: "/automations"
   }
 ];
 
-const testimonials = [
-  {
-    quote: "Kleero a transformé notre présence en ligne. Leur expertise en SEO et en développement web est inégalée. Nous avons vu une augmentation de 50% de notre trafic organique en seulement 3 mois.",
-    name: "Julien Moreau",
-    title: "CEO, Innovatech",
-    avatar: "JM"
-  },
-  {
-    quote: "L'automatisation mise en place pour notre service client a révolutionné notre façon de travailler. Moins de tâches manuelles, plus de temps pour nos clients. C'est un vrai game-changer.",
-    name: "Sophie Dubois",
-    title: "Responsable Opérations, Solutions Futura",
-    avatar: "SD"
-  },
-  {
-    quote: "Leur approche stratégique et leur design impeccable ont donné vie à notre marque. Le site est non seulement magnifique, mais aussi incroyablement performant.",
-    name: "Marc Petit",
-    title: "Fondateur, La Boîte Créative",
-    avatar: "MP"
-  }
+const approachSteps = [
+    {
+        icon: <Target className="w-8 h-8 text-primary" />,
+        step: "01",
+        title: "Comprendre vos besoins",
+        description: "Tout commence par l’écoute. Nous analysons vos objectifs et posons les bonnes bases. Objectifs, outils, contraintes : on cadre clairement le projet."
+    },
+    {
+        icon: <Briefcase className="w-8 h-8 text-primary" />,
+        step: "02",
+        title: "Élaborer la bonne stratégie",
+        description: "Nous construisons une stratégie simple et sur mesure. Chaque action a un but précis et mesurable."
+    },
+    {
+        icon: <CheckCircle className="w-8 h-8 text-primary" />,
+        step: "03",
+        title: "Donner vie à votre projet",
+        description: "Nous mettons en place, ajustons et testons. Et surtout, nous restons à vos côtés pour assurer le suivi."
+    }
 ];
+
+const projects = [
+    {
+        category: "Branding",
+        title: "Elevano – Elevating Web Design Excellence",
+        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+        category: "Web Development",
+        title: "Site officiel Actifs Immobilier",
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop"
+    }
+];
+
+const team = [
+    {
+        name: "CALMON Tristan",
+        role: "Co-founder",
+        avatar: "CT"
+    },
+    {
+        name: "ANGLARD Loïc",
+        role: "Co-founder",
+        avatar: "AL"
+    }
+];
+
 
 const Index = () => {
   return (
@@ -51,127 +86,147 @@ const Index = () => {
       <section className="relative text-center animate-fade-in-up overflow-hidden rounded-lg shadow-2xl" style={{ animationDelay: '0.1s' }}>
         <div className="absolute inset-0">
           <img src="/lovable-uploads/d984d06a-2b9a-4827-bcd3-73902741e0bb.png" alt="Paysage de montagne brumeux" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-background/60" />
+          <div className="absolute inset-0 bg-background/70" />
         </div>
         <div className="relative z-10 px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-white">
             Façonnez votre présence digitale.
+            <br />
+            <span className="text-primary">Avec Kleero</span>
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-300">
-            Kleero est votre partenaire stratégique pour la création de sites web, le référencement et l'intégration d'intelligence artificielle.
+          <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-300">
+            Nous construisons des sites web sur mesure, automatisons vos tâches clés et boostons votre visibilité en ligne avec des solutions concrètes, efficaces et pensées pour durer.
           </p>
           <div className="mt-8 flex justify-center gap-4">
             <Button size="lg" asChild>
-              <NavLink to="/services">Découvrir nos services</NavLink>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 text-white border-white/50 hover:bg-white hover:text-black backdrop-blur-sm" asChild>
-              <NavLink to="/automations">Nos automatisations <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
+              <NavLink to="/contact">Commencer dès maintenant</NavLink>
             </Button>
           </div>
         </div>
       </section>
 
       <section>
-        <div className="text-center mb-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <h2 className="text-3xl font-bold tracking-tight">Nos Pôles d'Expertise</h2>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                <h2 className="text-3xl font-bold tracking-tight">Notre Agence</h2>
+                <p className="text-muted-foreground">
+                    Chez Kleero, nous construisons des sites web sur mesure, automatisons vos tâches clés et boostons votre visibilité en ligne avec des solutions concrètes, efficaces et pensées pour durer.
+                </p>
+                <p className="text-muted-foreground pt-4">
+                    Des résultats concrets pour accélérer votre croissance digitale : plus de temps, plus de visibilité, plus de clients.
+                </p>
+                <Button asChild className="mt-4">
+                    <NavLink to="/about">En savoir plus <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
+                </Button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                <Card className="bg-secondary/40 border-secondary p-6">
+                    <CardTitle className="text-4xl font-bold text-primary">7200h</CardTitle>
+                    <CardDescription className="mt-2">Temps gagné</CardDescription>
+                </Card>
+                <Card className="bg-secondary/40 border-secondary p-6">
+                    <CardTitle className="text-4xl font-bold text-primary">+38%</CardTitle>
+                    <CardDescription className="mt-2">Visibilité web</CardDescription>
+                </Card>
+                 <Card className="bg-secondary/40 border-secondary p-6">
+                    <CardTitle className="text-4xl font-bold text-primary">x2</CardTitle>
+                    <CardDescription className="mt-2">Leads qualifiés</CardDescription>
+                </Card>
+            </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="text-center mb-12 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
+          <h2 className="text-3xl font-bold tracking-tight">Nos services</h2>
           <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
-            Trois services pour une présence en ligne complète et performante.
+            Kleero vous proposes des services capables de booster votre entreprise.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-3">
           {services.map((service, index) => (
-            <Card key={service.title} className="bg-secondary/40 border-secondary animate-fade-in-up transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" style={{ animationDelay: `${0.5 + index * 0.2}s` }}>
-              <CardHeader className="flex flex-row items-center gap-4">
-                {service.icon}
-                <CardTitle>{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{service.description}</p>
-              </CardContent>
+            <Card key={service.title} className="bg-secondary/40 border-secondary flex flex-col p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl animate-fade-in-up" style={{ animationDelay: `${0.9 + index * 0.2}s` }}>
+                <div className="flex items-center gap-4 mb-4">
+                    {service.icon}
+                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                </div>
+                <p className="text-muted-foreground flex-grow mb-6">{service.description}</p>
+                <ul className="space-y-2 mb-6">
+                    {service.features.map(feature => (
+                        <li key={feature} className="flex items-center text-sm">
+                            <CheckCircle className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                            <span>{feature}</span>
+                        </li>
+                    ))}
+                </ul>
+                <Button asChild>
+                    <NavLink to={service.link}>{service.cta} <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
+                </Button>
             </Card>
           ))}
         </div>
       </section>
       
-      <section className="grid md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-4">
-          <h2 className="text-3xl font-bold tracking-tight animate-fade-in-up" style={{ animationDelay: '1.1s' }}>De la Stratégie à la Réalité Numérique</h2>
-          <p className="text-muted-foreground animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
-            Nous ne nous contentons pas de construire des sites web. Nous créons des écosystèmes digitaux performants qui alimentent votre croissance. Notre approche est centrée sur des résultats mesurables et un partenariat à long terme.
-          </p>
-          <ul className="space-y-3 pt-2">
-            <li className="flex items-center animate-fade-in-up group" style={{ animationDelay: '1.3s' }}>
-              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 transition-transform duration-300 group-hover:scale-125" />
-              <span>Solutions sur-mesure adaptées à vos objectifs</span>
-            </li>
-            <li className="flex items-center animate-fade-in-up group" style={{ animationDelay: '1.4s' }}>
-              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 transition-transform duration-300 group-hover:scale-125" />
-              <span>Expertise technique de pointe et veille continue</span>
-            </li>
-            <li className="flex items-center animate-fade-in-up group" style={{ animationDelay: '1.5s' }}>
-              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 transition-transform duration-300 group-hover:scale-125" />
-              <span>Communication transparente et accompagnement dédié</span>
-            </li>
-          </ul>
-        </div>
-        <div className="flex items-center justify-center animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
-          <img src="photo-1498050108023-c5249f4df085" alt="Bureau avec un ordinateur portable affichant du code" className="rounded-lg shadow-2xl aspect-video object-cover" />
-        </div>
+      <section>
+          <div className="text-center mb-12 animate-fade-in-up" style={{ animationDelay: '1.1s' }}>
+              <h2 className="text-3xl font-bold tracking-tight">Notre approche</h2>
+              <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
+                  Une méthode claire, des résultats concrets. 3 étapes claires pour des résultats concrets et durables.
+              </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+              {approachSteps.map((step, index) => (
+                  <Card key={step.step} className="bg-secondary/40 border-secondary p-6 text-center animate-fade-in-up" style={{ animationDelay: `${1.3 + index * 0.2}s` }}>
+                      <div className="flex justify-center mb-4">{step.icon}</div>
+                      <p className="text-5xl font-bold text-primary/30 mb-2">{step.step}</p>
+                      <CardTitle className="text-xl mb-2">{step.title}</CardTitle>
+                      <p className="text-muted-foreground">{step.description}</p>
+                  </Card>
+              ))}
+          </div>
       </section>
 
-      <section className="animate-fade-in-up" style={{ animationDelay: '1.7s' }}>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight">Ce que nos clients disent de nous</h2>
-          <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
-            La confiance et la satisfaction de nos partenaires sont notre plus grande fierté.
-          </p>
-        </div>
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full max-w-4xl mx-auto"
-        >
-          <CarouselContent>
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1 h-full">
-                  <Card className="flex flex-col justify-between h-full bg-secondary/40 border-secondary transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                    <CardContent className="p-6">
-                      <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
-                    </CardContent>
-                    <CardHeader>
-                      <div className="flex items-center gap-4">
-                        <Avatar>
-                          <AvatarFallback>{testimonial.avatar}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <CardTitle className="text-base">{testimonial.name}</CardTitle>
-                          <CardDescription>{testimonial.title}</CardDescription>
-                        </div>
+      <section>
+          <div className="text-center mb-12 animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
+              <h2 className="text-3xl font-bold tracking-tight">Actualités</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+                  Découvrez comment nous avons transformé des idées en expériences digitales concrètes et performantes. Sites web, automatisations, branding… chaque projet est conçu pour générer de l’impact et des résultats durables.
+              </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+              {projects.map((project, index) => (
+                  <Card key={project.title} className="overflow-hidden group animate-fade-in-up" style={{ animationDelay: `${1.7 + index * 0.2}s` }}>
+                      <img src={project.image} alt={project.title} className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+                      <div className="p-6 bg-secondary/40">
+                          <p className="text-sm text-primary font-semibold">{project.category}</p>
+                          <CardTitle className="text-xl mt-1">{project.title}</CardTitle>
                       </div>
-                    </CardHeader>
                   </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex" />
-          <CarouselNext className="hidden sm:flex" />
-        </Carousel>
+              ))}
+          </div>
+          <div className="mt-12 text-center animate-fade-in-up" style={{ animationDelay: '1.9s' }}>
+              <Button variant="outline" size="lg">Visualiser plus <ArrowRight className="ml-2 h-4 w-4" /></Button>
+          </div>
       </section>
       
-      <section className="text-center bg-secondary/40 rounded-lg p-8 md:p-16 animate-fade-in-up" style={{ animationDelay: '1.9s' }}>
-        <h2 className="text-3xl font-bold tracking-tight">Prêt à lancer votre projet ?</h2>
-        <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
-          Discutons de vos ambitions et voyons comment nous pouvons vous aider à les atteindre.
-        </p>
-        <div className="mt-8">
-          <Button size="lg" asChild>
-             <NavLink to="/contact">Planifier un appel <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
-          </Button>
-        </div>
+      <section>
+          <div className="text-center mb-12 animate-fade-in-up" style={{ animationDelay: '2.1s' }}>
+              <h2 className="text-3xl font-bold tracking-tight">Les experts derrière Kleero</h2>
+              <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
+                  Une équipe passionnée par le digital, dédiée à transformer vos idées en solutions concrètes, durables et sur-mesure.
+              </p>
+          </div>
+          <div className="flex justify-center gap-8 md:gap-16 animate-fade-in-up" style={{ animationDelay: '2.3s' }}>
+              {team.map((member) => (
+                  <div key={member.name} className="text-center">
+                      <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-primary/20">
+                          <AvatarFallback className="text-3xl bg-secondary">{member.avatar}</AvatarFallback>
+                      </Avatar>
+                      <h3 className="font-bold text-lg">{member.name}</h3>
+                      <p className="text-muted-foreground">{member.role}</p>
+                  </div>
+              ))}
+          </div>
       </section>
     </div>
   );
