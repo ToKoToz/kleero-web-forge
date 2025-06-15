@@ -10,7 +10,7 @@ const Preview = () => {
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
-      <div className="relative z-10 text-center w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen py-8 space-y-12">
+      <div className="relative z-10 text-center w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen">
         {/* Main logo/title */}
         <div>
           <h1 className="text-[10rem] md:text-[16rem] lg:text-[20rem] font-bold gradient-text animate-fade-in-up leading-none">
@@ -18,15 +18,15 @@ const Preview = () => {
           </h1>
         </div>
 
-        {/* Catchphrase */}
-        <div className="animate-fade-in-up animate-delayed-2">
+        {/* Catchphrase - collé au titre */}
+        <div className="animate-fade-in-up animate-delayed-2 -mt-4">
           <p className="text-4xl md:text-6xl lg:text-8xl font-bold gradient-text leading-tight">
             L'avenir de l'automatisation
           </p>
         </div>
 
-        {/* Bottom section */}
-        <div className="animate-fade-in-up animate-delayed-3">
+        {/* Bottom section - collé au catchphrase */}
+        <div className="animate-fade-in-up animate-delayed-3 -mt-2">
           <p className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground font-light">
             Transformez votre entreprise
           </p>
