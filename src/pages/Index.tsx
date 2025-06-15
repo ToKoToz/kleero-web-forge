@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Code, TrendingUp, Bot, ArrowRight, CheckCircle, Briefcase, Target, Users } from 'lucide-react';
+import { Code, TrendingUp, Bot, ArrowRight, CheckCircle, Briefcase, Target, Users, Clock } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
@@ -119,18 +119,33 @@ const Index = () => {
                     <NavLink to="/about">En savoir plus <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
                 </Button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-                <Card className="bg-secondary/40 border-secondary p-6">
-                    <CardTitle className="text-4xl font-bold text-primary">7200h</CardTitle>
-                    <CardDescription className="mt-2">Temps gagné</CardDescription>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Temps gagné</CardTitle>
+                        <Clock className="h-4 w-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold text-primary">7200h</div>
+                    </CardContent>
                 </Card>
-                <Card className="bg-secondary/40 border-secondary p-6">
-                    <CardTitle className="text-4xl font-bold text-primary">+38%</CardTitle>
-                    <CardDescription className="mt-2">Visibilité web</CardDescription>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Visibilité web</CardTitle>
+                        <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold text-primary">+38%</div>
+                    </CardContent>
                 </Card>
-                 <Card className="bg-secondary/40 border-secondary p-6">
-                    <CardTitle className="text-4xl font-bold text-primary">x2</CardTitle>
-                    <CardDescription className="mt-2">Leads qualifiés</CardDescription>
+                 <Card>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Leads qualifiés</CardTitle>
+                        <Users className="h-4 w-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold text-primary">x2</div>
+                    </CardContent>
                 </Card>
             </div>
         </div>
@@ -145,7 +160,7 @@ const Index = () => {
         </div>
         <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-3">
           {services.map((service, index) => (
-            <Card key={service.title} className="bg-secondary/40 border-secondary flex flex-col p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl animate-fade-in-up" style={{ animationDelay: `${0.9 + index * 0.2}s` }}>
+            <Card key={service.title} className="bg-card flex flex-col p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl animate-fade-in-up" style={{ animationDelay: `${0.9 + index * 0.2}s` }}>
                 <div className="flex items-center gap-4 mb-4">
                     {service.icon}
                     <CardTitle className="text-xl">{service.title}</CardTitle>
@@ -168,36 +183,43 @@ const Index = () => {
       </section>
       
       <section>
-          <div className="text-center mb-12 animate-fade-in-up" style={{ animationDelay: '1.1s' }}>
+          <div className="text-center mb-16 animate-fade-in-up" style={{ animationDelay: '1.1s' }}>
               <h2 className="text-3xl font-bold tracking-tight">Notre approche</h2>
-              <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
-                  Une méthode claire, des résultats concrets. 3 étapes claires pour des résultats concrets et durables.
+              <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+                Une méthode claire, des résultats concrets. Notre processus en 3 étapes garantit des solutions adaptées et des résultats durables.
               </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-3 relative">
+              <div className="absolute top-8 left-0 right-0 h-px bg-border hidden md:block -z-10" />
               {approachSteps.map((step, index) => (
-                  <Card key={step.step} className="bg-secondary/40 border-secondary p-6 text-center animate-fade-in-up" style={{ animationDelay: `${1.3 + index * 0.2}s` }}>
-                      <div className="flex justify-center mb-4">{step.icon}</div>
-                      <p className="text-5xl font-bold text-primary/30 mb-2">{step.step}</p>
-                      <CardTitle className="text-xl mb-2">{step.title}</CardTitle>
-                      <p className="text-muted-foreground">{step.description}</p>
-                  </Card>
+                  <div key={step.step} className="relative flex flex-col items-center text-center animate-fade-in-up" style={{ animationDelay: `${1.3 + index * 0.2}s` }}>
+                      <div className="mb-6 bg-background z-10 px-2">
+                          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary border-4 border-background ring-2 ring-primary/20">
+                              {step.icon}
+                          </div>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                      <p className="text-muted-foreground px-4">{step.description}</p>
+                      <p className="absolute -top-2 left-1/2 -translate-x-1/2 text-7xl font-bold text-primary/10 -z-10">{step.step}</p>
+                  </div>
               ))}
           </div>
       </section>
 
       <section>
           <div className="text-center mb-12 animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
-              <h2 className="text-3xl font-bold tracking-tight">Actualités</h2>
+              <h2 className="text-3xl font-bold tracking-tight">Nos réalisations</h2>
               <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
                   Découvrez comment nous avons transformé des idées en expériences digitales concrètes et performantes. Sites web, automatisations, branding… chaque projet est conçu pour générer de l’impact et des résultats durables.
               </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
               {projects.map((project, index) => (
-                  <Card key={project.title} className="overflow-hidden group animate-fade-in-up" style={{ animationDelay: `${1.7 + index * 0.2}s` }}>
-                      <img src={project.image} alt={project.title} className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
-                      <div className="p-6 bg-secondary/40">
+                  <Card key={project.title} className="overflow-hidden group animate-fade-in-up transition-all duration-300 hover:shadow-xl hover:-translate-y-1" style={{ animationDelay: `${1.7 + index * 0.2}s` }}>
+                      <div className="overflow-hidden">
+                        <img src={project.image} alt={project.title} className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+                      </div>
+                      <div className="p-6 bg-card">
                           <p className="text-sm text-primary font-semibold">{project.category}</p>
                           <CardTitle className="text-xl mt-1">{project.title}</CardTitle>
                       </div>
@@ -205,7 +227,11 @@ const Index = () => {
               ))}
           </div>
           <div className="mt-12 text-center animate-fade-in-up" style={{ animationDelay: '1.9s' }}>
-              <Button variant="outline" size="lg">Visualiser plus <ArrowRight className="ml-2 h-4 w-4" /></Button>
+              <Button variant="outline" size="lg" asChild>
+                <NavLink to="/services">
+                  Visualiser plus <ArrowRight className="ml-2 h-4 w-4" />
+                </NavLink>
+              </Button>
           </div>
       </section>
       
@@ -219,8 +245,8 @@ const Index = () => {
           <div className="flex justify-center gap-8 md:gap-16 animate-fade-in-up" style={{ animationDelay: '2.3s' }}>
               {team.map((member) => (
                   <div key={member.name} className="text-center">
-                      <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-primary/20">
-                          <AvatarFallback className="text-3xl bg-secondary">{member.avatar}</AvatarFallback>
+                      <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-primary/20 shadow-lg">
+                          <AvatarFallback className="text-2xl bg-secondary font-semibold text-primary">{member.avatar}</AvatarFallback>
                       </Avatar>
                       <h3 className="font-bold text-lg">{member.name}</h3>
                       <p className="text-muted-foreground">{member.role}</p>
