@@ -122,6 +122,11 @@ const Services = () => {
                                 En savoir plus
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
                               </NavLink>
+                            ) : index === 1 ? (
+                              <NavLink to="/services/optimisation-seo">
+                                En savoir plus
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                              </NavLink>
                             ) : (
                               <span>
                                 En savoir plus

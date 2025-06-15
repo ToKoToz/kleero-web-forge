@@ -11,6 +11,7 @@ import Automations from "./pages/Automations";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import WebCreationDetails from "./pages/WebCreationDetails";
+import SEOOptimizationDetails from "./pages/SEOOptimizationDetails";
 import Layout from "./components/Layout";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/creation-web" element={<WebCreationDetails />} />
+            <Route path="/services/optimisation-seo" element={<SEOOptimizationDetails />} />
             <Route path="/about" element={<About />} />
             <Route path="/automations" element={<Automations />} />
             <Route path="/contact" element={<Contact />} />
