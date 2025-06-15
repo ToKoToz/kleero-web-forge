@@ -1,7 +1,5 @@
 
 import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const Preview = () => {
   return (
@@ -12,46 +10,34 @@ const Preview = () => {
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
+      <div className="relative z-10 text-center max-w-5xl mx-auto">
         {/* Main logo/title */}
-        <div className="mb-8">
-          <h1 className="text-8xl md:text-9xl font-bold gradient-text mb-4 animate-fade-in-up">
+        <div className="mb-16">
+          <h1 className="text-9xl md:text-[12rem] font-bold gradient-text mb-8 animate-fade-in-up leading-none">
             Kleero
           </h1>
-          <div className="flex items-center justify-center gap-2 animate-fade-in-up animate-delayed-1">
-            <Sparkles className="w-6 h-6 text-primary animate-pulse" />
-            <p className="text-xl md:text-2xl text-muted-foreground font-light">
-              L'avenir de l'automatisation commence ici
-            </p>
-            <Sparkles className="w-6 h-6 text-primary animate-pulse" />
-          </div>
+          <p className="text-3xl md:text-4xl text-muted-foreground font-light animate-fade-in-up animate-delayed-1">
+            L'avenir de l'automatisation commence ici
+          </p>
         </div>
 
-        {/* Catchphrase */}
-        <div className="mb-12 animate-fade-in-up animate-delayed-2">
-          <p className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
-            Transformez vos processus,
+        {/* Enhanced catchphrase */}
+        <div className="mb-20 animate-fade-in-up animate-delayed-2">
+          <p className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+            Transformez vos processus
           </p>
-          <p className="text-2xl md:text-3xl font-semibold gradient-text">
+          <p className="text-4xl md:text-5xl font-bold gradient-text mb-8 leading-tight">
             Libérez votre potentiel
           </p>
-        </div>
-
-        {/* CTA Button */}
-        <div className="animate-fade-in-up animate-delayed-3">
-          <Button 
-            size="lg" 
-            className="text-lg px-8 py-6 rounded-xl shadow-large hover:shadow-glow transition-all duration-300 group"
-          >
-            Découvrir nos solutions
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </div>
-
-        {/* Bottom subtle text */}
-        <div className="mt-16 animate-fade-in-up animate-delayed-4">
-          <p className="text-sm text-muted-foreground/60">
+          <p className="text-2xl md:text-3xl text-muted-foreground font-medium">
             Une révolution technologique à portée de main
+          </p>
+        </div>
+
+        {/* Additional inspiring text */}
+        <div className="animate-fade-in-up animate-delayed-3">
+          <p className="text-xl md:text-2xl text-muted-foreground/80 font-light max-w-3xl mx-auto leading-relaxed">
+            Découvrez comment l'intelligence artificielle peut transformer votre entreprise
           </p>
         </div>
       </div>
