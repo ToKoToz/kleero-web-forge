@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Carousel,
@@ -298,7 +299,7 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
             <div 
               className="h-full bg-primary rounded-full transition-all duration-100 ease-linear"
               style={{
-                animation: 'progress 5s linear infinite'
+                animation: 'progressBar 5s linear infinite'
               }}
             />
           </div>
@@ -364,12 +365,14 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
         )}
       </div>
 
-      <style jsx>{`
-        @keyframes progress {
-          from { width: 0%; }
-          to { width: 100%; }
-        }
-      `}</style>
+      <style>
+        {`
+          @keyframes progressBar {
+            from { width: 0%; }
+            to { width: 100%; }
+          }
+        `}
+      </style>
     </div>
   );
 };
