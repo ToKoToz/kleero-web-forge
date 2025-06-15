@@ -48,20 +48,26 @@ const testimonials = [
 const Index = () => {
   return (
     <div className="space-y-20 sm:space-y-32">
-      <section className="text-center animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-          Façonnez votre présence digitale.
-        </h1>
-        <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
-          Kleero est votre partenaire stratégique pour la création de sites web, le référencement et l'intégration d'intelligence artificielle.
-        </p>
-        <div className="mt-8 flex justify-center gap-4">
-          <Button size="lg" asChild>
-            <NavLink to="/services">Découvrir nos services</NavLink>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <NavLink to="/automations">Nos automatisations <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
-          </Button>
+      <section className="relative text-center animate-fade-in-up overflow-hidden rounded-lg shadow-2xl" style={{ animationDelay: '0.1s' }}>
+        <div className="absolute inset-0">
+          <img src="/lovable-uploads/d984d06a-2b9a-4827-bcd3-73902741e0bb.png" alt="Paysage de montagne brumeux" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-background/60" />
+        </div>
+        <div className="relative z-10 px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-white">
+            Façonnez votre présence digitale.
+          </h1>
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-300">
+            Kleero est votre partenaire stratégique pour la création de sites web, le référencement et l'intégration d'intelligence artificielle.
+          </p>
+          <div className="mt-8 flex justify-center gap-4">
+            <Button size="lg" asChild>
+              <NavLink to="/services">Découvrir nos services</NavLink>
+            </Button>
+            <Button size="lg" variant="outline" className="bg-white/10 text-white border-white/50 hover:bg-white hover:text-black backdrop-blur-sm" asChild>
+              <NavLink to="/automations">Nos automatisations <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
+            </Button>
+          </div>
         </div>
       </section>
 
