@@ -1,8 +1,9 @@
-
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Code, TrendingUp, Bot, ArrowRight } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Code, TrendingUp, Bot, ArrowRight, CheckCircle } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const services = [
   {
@@ -19,6 +20,27 @@ const services = [
     icon: <Bot className="w-8 h-8 text-primary" />,
     title: "Automatisation & LLMO",
     description: "Intégrez l'intelligence artificielle pour optimiser vos processus et créer des expériences uniques."
+  }
+];
+
+const testimonials = [
+  {
+    quote: "Kleero a transformé notre présence en ligne. Leur expertise en SEO et en développement web est inégalée. Nous avons vu une augmentation de 50% de notre trafic organique en seulement 3 mois.",
+    name: "Julien Moreau",
+    title: "CEO, Innovatech",
+    avatar: "JM"
+  },
+  {
+    quote: "L'automatisation mise en place pour notre service client a révolutionné notre façon de travailler. Moins de tâches manuelles, plus de temps pour nos clients. C'est un vrai game-changer.",
+    name: "Sophie Dubois",
+    title: "Responsable Opérations, Solutions Futura",
+    avatar: "SD"
+  },
+  {
+    quote: "Leur approche stratégique et leur design impeccable ont donné vie à notre marque. Le site est non seulement magnifique, mais aussi incroyablement performant.",
+    name: "Marc Petit",
+    title: "Fondateur, La Boîte Créative",
+    avatar: "MP"
   }
 ];
 
@@ -64,11 +86,80 @@ const Index = () => {
         </div>
       </section>
       
-      <section className="text-center bg-secondary/40 rounded-lg p-8 md:p-16 animate-fade-in-up" style={{ animationDelay: '1s' }}>
-          <h2 className="text-3xl font-bold tracking-tight">Prêt à lancer votre projet ?</h2>
-          <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
-            Discutons de vos ambitions et voyons comment nous pouvons vous aider à les atteindre.
+      <section className="grid md:grid-cols-2 gap-12 items-center animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
+        <div className="space-y-4">
+          <h2 className="text-3xl font-bold tracking-tight">De la Stratégie à la Réalité Numérique</h2>
+          <p className="text-muted-foreground">
+            Nous ne nous contentons pas de construire des sites web. Nous créons des écosystèmes digitaux performants qui alimentent votre croissance. Notre approche est centrée sur des résultats mesurables et un partenariat à long terme.
           </p>
+          <ul className="space-y-3 pt-2">
+            <li className="flex items-center">
+              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
+              <span>Solutions sur-mesure adaptées à vos objectifs</span>
+            </li>
+            <li className="flex items-center">
+              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
+              <span>Expertise technique de pointe et veille continue</span>
+            </li>
+            <li className="flex items-center">
+              <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
+              <span>Communication transparente et accompagnement dédié</span>
+            </li>
+          </ul>
+        </div>
+        <div className="flex items-center justify-center">
+          <img src="photo-1498050108023-c5249f4df085" alt="Bureau avec un ordinateur portable affichant du code" className="rounded-lg shadow-2xl aspect-video object-cover" />
+        </div>
+      </section>
+
+      <section className="animate-fade-in-up" style={{ animationDelay: '1.1s' }}>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight">Ce que nos clients disent de nous</h2>
+          <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
+            La confiance et la satisfaction de nos partenaires sont notre plus grande fierté.
+          </p>
+        </div>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full max-w-4xl mx-auto"
+        >
+          <CarouselContent>
+            {testimonials.map((testimonial, index) => (
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="flex flex-col justify-between h-full bg-secondary/40 border-secondary">
+                    <CardContent className="p-6">
+                      <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
+                    </CardContent>
+                    <CardHeader>
+                      <div className="flex items-center gap-4">
+                        <Avatar>
+                          <AvatarFallback>{testimonial.avatar}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <CardTitle className="text-base">{testimonial.name}</CardTitle>
+                          <CardDescription>{testimonial.title}</CardDescription>
+                        </div>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden sm:flex" />
+          <CarouselNext className="hidden sm:flex" />
+        </Carousel>
+      </section>
+      
+      <section className="text-center bg-secondary/40 rounded-lg p-8 md:p-16 animate-fade-in-up" style={{ animationDelay: '1.3s' }}>
+        <h2 className="text-3xl font-bold tracking-tight">Prêt à lancer votre projet ?</h2>
+        <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
+          Discutons de vos ambitions et voyons comment nous pouvons vous aider à les atteindre.
+        </p>
         <div className="mt-8">
           <Button size="lg" asChild>
              <NavLink to="/contact">Planifier un appel <ArrowRight className="ml-2 h-4 w-4" /></NavLink>
