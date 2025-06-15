@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Code, TrendingUp, Bot, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { NavLink } from 'react-router-dom';
 
 const servicesDetails = [
   {
