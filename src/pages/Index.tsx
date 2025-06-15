@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Code, TrendingUp, Bot, ArrowRight, CheckCircle, Briefcase, Target, Users, Clock, Sparkles, Star, Zap, Shield } from 'lucide-react';
@@ -59,23 +60,6 @@ const approachSteps = [
         title: "Donner vie à votre projet",
         description: "Nous mettons en place, ajustons et testons. Et surtout, nous restons à vos côtés pour assurer le suivi.",
         color: "bg-gradient-to-br from-purple-500/10 to-purple-600/5 border-purple-500/20"
-    }
-];
-
-const projects = [
-    {
-        category: "Branding",
-        title: "Elevano – Elevating Web Design Excellence",
-        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop",
-        gradient: "from-orange-500/90 to-red-500/90",
-        tags: ["Design System", "UI/UX", "Branding"]
-    },
-    {
-        category: "Web Development",
-        title: "Site officiel Actifs Immobilier",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
-        gradient: "from-blue-500/90 to-cyan-500/90",
-        tags: ["React", "TypeScript", "Performance"]
     }
 ];
 
@@ -376,66 +360,6 @@ const Index = () => {
                 <p className="absolute -top-4 left-1/2 -translate-x-1/2 text-9xl font-black text-primary/5 -z-10 group-hover:text-primary/10 transition-colors duration-500">{step.step}</p>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* Enhanced Projects Section */}
-        <section className="container-custom section-padding relative">
-          {/* Background decoration */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-1/4 right-1/4 w-88 h-88 bg-orange-500/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '25s' }} />
-          </div>
-          
-          <div className="text-center mb-20 animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
-            <Badge variant="secondary" className="mb-6">
-              <Star className="w-4 h-4 mr-2" />
-              Nos réalisations
-            </Badge>
-            <h2 className="text-4xl lg:text-6xl font-black tracking-tight gradient-text mb-6">
-              Portfolio d'excellence
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Découvrez comment nous avons transformé des idées en expériences digitales concrètes et performantes. 
-              Sites web, automatisations, branding… <span className="text-primary font-semibold">chaque projet est conçu pour générer de l'impact et des résultats durables.</span>
-            </p>
-          </div>
-          
-          <div className="grid gap-12 md:grid-cols-2">
-            {projects.map((project, index) => (
-              <Card key={project.title} className={`glass-card overflow-hidden group transition-all duration-500 hover-lift hover:shadow-2xl animate-fade-in-scale opacity-0`} style={{ animationDelay: `${0.4 + index * 0.2}s` }}>
-                <div className="relative overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center`}>
-                    <div className="text-center space-y-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-                      <Button variant="secondary" className="btn-primary">
-                        Voir le projet
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-8 bg-card group-hover:bg-gradient-to-br group-hover:from-card group-hover:to-secondary/20 transition-all duration-300">
-                  <div className="flex items-center justify-between mb-4">
-                    <Badge variant="secondary" className="text-primary font-semibold group-hover:animate-pulse">{project.category}</Badge>
-                  </div>
-                  <CardTitle className="text-2xl mb-4 group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="mt-20 text-center animate-fade-in-up opacity-0" style={{ animationDelay: '0.8s' }}>
-            <Button variant="outline" size="lg" asChild className="glass-card hover-lift group px-8 py-4">
-              <NavLink to="/services">
-                <span>Découvrir tous nos projets</span>
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-              </NavLink>
-            </Button>
           </div>
         </section>
         
