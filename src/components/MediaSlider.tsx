@@ -268,11 +268,11 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
             ))}
           </CarouselContent>
 
-          {/* Navigation améliorée */}
+          {/* Navigation améliorée avec meilleure visibilité */}
           {medias.length > 1 && (
             <>
-              <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-0 w-12 h-12 z-10" />
-              <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-0 w-12 h-12 z-10" />
+              <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-900/80 hover:bg-gray-900 text-white shadow-lg border-0 w-12 h-12 z-10" />
+              <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-900/80 hover:bg-gray-900 text-white shadow-lg border-0 w-12 h-12 z-10" />
             </>
           )}
         </Carousel>
