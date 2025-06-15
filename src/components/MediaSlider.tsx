@@ -109,6 +109,26 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
     window.open(mediaUrl, '_blank');
   };
 
+  // Fonction pour créer une preview de vidéo
+  const createVideoThumbnail = (videoUrl: string) => {
+    return (
+      <div className="w-full h-full bg-gray-900 flex items-center justify-center relative overflow-hidden">
+        <video
+          src={videoUrl}
+          className="w-full h-full object-cover"
+          muted
+          preload="metadata"
+          style={{ pointerEvents: 'none' }}
+        />
+        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <div className="w-6 h-6 bg-white/90 rounded-full flex items-center justify-center">
+            <Play className="w-3 h-3 text-gray-900 ml-0.5" />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   if (!medias || medias.length === 0) {
     return null;
   }
@@ -302,7 +322,7 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
         )}
       </div>
 
-      {/* Vignettes (thumbnails) */}
+      {/* Vignettes (thumbnails) avec preview vidéo */}
       {showThumbnails && medias.length > 1 && (
         <div className="space-y-3">
           <h4 className="text-sm font-medium text-muted-foreground">Aperçu rapide</h4>
@@ -324,9 +344,7 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                    <Play className="w-4 h-4 text-gray-500" />
-                  </div>
+                  createVideoThumbnail(media.url)
                 )}
                 <div className="absolute inset-0 bg-black/20 flex items-end">
                   <span className="text-white text-xs p-1 truncate w-full">
