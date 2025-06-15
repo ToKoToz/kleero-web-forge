@@ -8,7 +8,15 @@ import {
 } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { X, Play, Image as ImageIcon } from 'lucide-react';
+import { Play } from 'lucide-react';
+import MediaSlider from './MediaSlider';
+
+interface MediaItem {
+  id: string;
+  url: string;
+  type: 'image' | 'video';
+  name: string;
+}
 
 interface Automation {
   id: string;
@@ -45,6 +53,14 @@ const AutomationDetailsDialog: React.FC<AutomationDetailsDialogProps> = ({
       default: return 'bg-gray-100 text-gray-800';
     }
   };
+
+  // Convertir les URLs en objets MediaItem pour le slider
+  const medias: MediaItem[] = automation.details_images?.map((url, index) => ({
+    id: `media-${index}`,
+    url,
+    type: url.includes('video') || url.includes('.mp4') || url.includes('.webm') ? 'video' as const : 'image' as const,
+    name: `Média ${index + 1}`
+  })) || [];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -101,7 +117,7 @@ const AutomationDetailsDialog: React.FC<AutomationDetailsDialogProps> = ({
             </div>
           </div>
 
-          {/* Vidéo */}
+          {/* Vidéo YouTube/externe */}
           {automation.details_video_url && (
             <div>
               <h3 className="font-semibold text-lg mb-3">Vidéo de démonstration</h3>
@@ -117,32 +133,9 @@ const AutomationDetailsDialog: React.FC<AutomationDetailsDialogProps> = ({
             </div>
           )}
 
-          {/* Images */}
-          {automation.details_images && automation.details_images.length > 0 && (
-            <div>
-              <h3 className="font-semibold text-lg mb-3">Captures d'écran</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {automation.details_images.map((image, index) => (
-                  <div key={index} className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
-                    {image ? (
-                      <img
-                        src={image}
-                        alt={`Capture ${index + 1}`}
-                        className="w-full h-full object-cover rounded-lg"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                    ) : null}
-                    <div className="text-muted-foreground">
-                      <ImageIcon className="w-8 h-8" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Slider des médias uploadés */}
+          {medias.length > 0 && (
+            <MediaSlider medias={medias} />
           )}
 
           {/* CTA */}

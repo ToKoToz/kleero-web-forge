@@ -17,6 +17,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import MediaUpload from '../MediaUpload';
+
+interface MediaItem {
+  id: string;
+  url: string;
+  type: 'image' | 'video';
+  name: string;
+}
 
 interface Automation {
   id: string;
@@ -54,8 +62,8 @@ const AutomationForm: React.FC<AutomationFormProps> = ({ automation, onClose }) 
     details_title: '',
     details_description: '',
     details_video_url: '',
-    details_images: [''],
   });
+  const [medias, setMedias] = useState<MediaItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -73,8 +81,18 @@ const AutomationForm: React.FC<AutomationFormProps> = ({ automation, onClose }) 
         details_title: automation.details_title || '',
         details_description: automation.details_description || '',
         details_video_url: automation.details_video_url || '',
-        details_images: automation.details_images && automation.details_images.length > 0 ? automation.details_images : [''],
       });
+
+      // Convertir les URLs existantes en objets MediaItem
+      if (automation.details_images && automation.details_images.length > 0) {
+        const existingMedias = automation.details_images.map((url, index) => ({
+          id: `existing-${index}`,
+          url,
+          type: url.includes('video') || url.includes('.mp4') || url.includes('.webm') ? 'video' as const : 'image' as const,
+          name: `Média existant ${index + 1}`
+        }));
+        setMedias(existingMedias);
+      }
     }
   }, [automation]);
 
@@ -87,7 +105,7 @@ const AutomationForm: React.FC<AutomationFormProps> = ({ automation, onClose }) 
         ...formData,
         benefits: formData.benefits.filter(b => b.trim() !== ''),
         tags: formData.tags.filter(t => t.trim() !== ''),
-        details_images: formData.details_images.filter(img => img.trim() !== ''),
+        details_images: medias.map(media => media.url),
         updated_at: new Date().toISOString(),
       };
 
@@ -127,21 +145,21 @@ const AutomationForm: React.FC<AutomationFormProps> = ({ automation, onClose }) 
     }
   };
 
-  const addArrayField = (field: 'benefits' | 'tags' | 'details_images') => {
+  const addArrayField = (field: 'benefits' | 'tags') => {
     setFormData(prev => ({
       ...prev,
       [field]: [...prev[field], '']
     }));
   };
 
-  const updateArrayField = (field: 'benefits' | 'tags' | 'details_images', index: number, value: string) => {
+  const updateArrayField = (field: 'benefits' | 'tags', index: number, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: prev[field].map((item, i) => i === index ? value : item)
     }));
   };
 
-  const removeArrayField = (field: 'benefits' | 'tags' | 'details_images', index: number) => {
+  const removeArrayField = (field: 'benefits' | 'tags', index: number) => {
     setFormData(prev => ({
       ...prev,
       [field]: prev[field].filter((_, i) => i !== index)
@@ -320,7 +338,7 @@ const AutomationForm: React.FC<AutomationFormProps> = ({ automation, onClose }) 
               </div>
 
               <div>
-                <Label htmlFor="details_video_url">URL de la vidéo</Label>
+                <Label htmlFor="details_video_url">URL de la vidéo (optionnel)</Label>
                 <Input
                   id="details_video_url"
                   value={formData.details_video_url}
@@ -329,39 +347,10 @@ const AutomationForm: React.FC<AutomationFormProps> = ({ automation, onClose }) 
                 />
               </div>
 
-              <div>
-                <Label>Images</Label>
-                <div className="space-y-2">
-                  {formData.details_images.map((image, index) => (
-                    <div key={index} className="flex gap-2">
-                      <Input
-                        value={image}
-                        onChange={(e) => updateArrayField('details_images', index, e.target.value)}
-                        placeholder="URL de l'image"
-                      />
-                      {formData.details_images.length > 1 && (
-                        <Button
-                          type="button"
-                          variant="outline"
-                          size="sm"
-                          onClick={() => removeArrayField('details_images', index)}
-                        >
-                          <X className="w-4 h-4" />
-                        </Button>
-                      )}
-                    </div>
-                  ))}
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => addArrayField('details_images')}
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Ajouter une image
-                  </Button>
-                </div>
-              </div>
+              <MediaUpload
+                medias={medias}
+                onMediasChange={setMedias}
+              />
             </div>
           </div>
 
