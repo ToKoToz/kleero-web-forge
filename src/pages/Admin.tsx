@@ -18,7 +18,6 @@ const Admin = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    // Vérifier si l'admin est déjà authentifié (session locale)
     const adminAuth = localStorage.getItem('admin_authenticated');
     if (adminAuth === 'true') {
       setIsAuthenticated(true);
@@ -30,8 +29,6 @@ const Admin = () => {
     setIsLoading(true);
 
     try {
-      // Pour la démo, nous utilisons une authentification simple
-      // En production, utilisez bcrypt pour hasher les mots de passe
       const { data, error } = await supabase
         .from('admin_users')
         .select('*')
@@ -43,7 +40,6 @@ const Admin = () => {
         return;
       }
 
-      // Vérification simple du mot de passe (à améliorer en production)
       if (password === 'admin123') {
         setIsAuthenticated(true);
         localStorage.setItem('admin_authenticated', 'true');
@@ -89,7 +85,6 @@ const Admin = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="admin@kleero.com"
                 />
               </div>
               <div>
@@ -100,7 +95,6 @@ const Admin = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  placeholder="••••••••"
                 />
               </div>
               <Button type="submit" className="w-full" disabled={isLoading}>
