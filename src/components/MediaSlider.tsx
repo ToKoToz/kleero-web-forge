@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Carousel,
@@ -242,9 +241,6 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
                       <h4 className="text-white text-lg font-semibold truncate">
                         {media.name}
                       </h4>
-                      <p className="text-white/80 text-sm mt-1">
-                        {media.type === 'image' ? 'Image' : 'Vidéo'} • Position {index + 1}
-                      </p>
                     </div>
                   </div>
                 </div>
