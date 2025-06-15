@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -88,7 +87,7 @@ const AutomationForm: React.FC<AutomationFormProps> = ({ automation, onClose }) 
         const existingMedias = automation.details_images.map((url, index) => ({
           id: `existing-${index}`,
           url,
-          type: url.includes('video') || url.includes('.mp4') || url.includes('.webm') ? 'video' as const : 'image' as const,
+          type: url.includes('video') || url.includes('.mp4') || url.includes('.webm') || url.includes('.mov') ? 'video' as const : 'image' as const,
           name: `Média existant ${index + 1}`
         }));
         setMedias(existingMedias);
@@ -338,13 +337,16 @@ const AutomationForm: React.FC<AutomationFormProps> = ({ automation, onClose }) 
               </div>
 
               <div>
-                <Label htmlFor="details_video_url">URL de la vidéo (optionnel)</Label>
+                <Label htmlFor="details_video_url">URL de la vidéo externe (optionnel)</Label>
                 <Input
                   id="details_video_url"
                   value={formData.details_video_url}
                   onChange={(e) => setFormData(prev => ({ ...prev, details_video_url: e.target.value }))}
-                  placeholder="https://youtube.com/..."
+                  placeholder="https://youtube.com/... (pour lien externe)"
                 />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Ce champ est pour les liens YouTube/Vimeo. Pour uploader des vidéos directement, utilisez la section ci-dessous.
+                </p>
               </div>
 
               <MediaUpload

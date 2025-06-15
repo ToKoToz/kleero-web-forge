@@ -58,7 +58,7 @@ const AutomationDetailsDialog: React.FC<AutomationDetailsDialogProps> = ({
   const medias: MediaItem[] = automation.details_images?.map((url, index) => ({
     id: `media-${index}`,
     url,
-    type: url.includes('video') || url.includes('.mp4') || url.includes('.webm') ? 'video' as const : 'image' as const,
+    type: url.includes('video') || url.includes('.mp4') || url.includes('.webm') || url.includes('.mov') ? 'video' as const : 'image' as const,
     name: `Média ${index + 1}`
   })) || [];
 
@@ -120,7 +120,7 @@ const AutomationDetailsDialog: React.FC<AutomationDetailsDialogProps> = ({
           {/* Vidéo YouTube/externe */}
           {automation.details_video_url && (
             <div>
-              <h3 className="font-semibold text-lg mb-3">Vidéo de démonstration</h3>
+              <h3 className="font-semibold text-lg mb-3">Vidéo de démonstration externe</h3>
               <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
                 <Button
                   variant="outline"

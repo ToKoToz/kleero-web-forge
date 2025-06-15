@@ -51,12 +51,15 @@ const MediaSlider: React.FC<MediaSliderProps> = ({ medias }) => {
                       src={media.url}
                       controls
                       className="w-full h-full object-contain"
+                      preload="metadata"
                       onError={(e) => {
                         const target = e.target as HTMLVideoElement;
                         target.style.display = 'none';
                         target.nextElementSibling?.classList.remove('hidden');
                       }}
-                    />
+                    >
+                      Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
                   )}
                   <div className="hidden flex flex-col items-center justify-center text-gray-500">
                     <ImageIcon className="w-12 h-12 mb-2" />

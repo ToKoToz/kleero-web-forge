@@ -36,6 +36,12 @@ const MediaUpload: React.FC<MediaUploadProps> = ({
 
     try {
       const uploadPromises = Array.from(files).map(async (file) => {
+        // Vérifier la taille du fichier (limite à 50MB pour les vidéos)
+        const maxSize = file.type.startsWith('video/') ? 50 * 1024 * 1024 : 10 * 1024 * 1024;
+        if (file.size > maxSize) {
+          throw new Error(`Le fichier ${file.name} est trop volumineux. Limite: ${file.type.startsWith('video/') ? '50MB' : '10MB'}`);
+        }
+
         const fileExt = file.name.split('.').pop();
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
         const filePath = `automation-media/${fileName}`;
@@ -68,7 +74,7 @@ const MediaUpload: React.FC<MediaUploadProps> = ({
       toast.success(`${uploadedMedias.length} fichier(s) uploadé(s)`);
     } catch (error) {
       console.error('Erreur lors de l\'upload:', error);
-      toast.error('Erreur lors de l\'upload');
+      toast.error(error instanceof Error ? error.message : 'Erreur lors de l\'upload');
     } finally {
       setIsUploading(false);
       event.target.value = '';
@@ -99,7 +105,7 @@ const MediaUpload: React.FC<MediaUploadProps> = ({
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor="media-upload">Upload de médias</Label>
+        <Label htmlFor="media-upload">Upload de médias (Images et Vidéos)</Label>
         <div className="mt-2">
           <Input
             id="media-upload"
@@ -110,6 +116,10 @@ const MediaUpload: React.FC<MediaUploadProps> = ({
             disabled={isUploading}
             className="cursor-pointer"
           />
+          <p className="text-xs text-muted-foreground mt-1">
+            Formats supportés: Images (JPG, PNG, GIF, WebP) et Vidéos (MP4, WebM, MOV). 
+            Taille max: 10MB pour les images, 50MB pour les vidéos.
+          </p>
         </div>
         {isUploading && (
           <p className="text-sm text-muted-foreground mt-2">
@@ -137,9 +147,19 @@ const MediaUpload: React.FC<MediaUploadProps> = ({
                       }}
                     />
                   ) : (
-                    <div className="flex flex-col items-center justify-center text-gray-500">
-                      <Play className="w-8 h-8 mb-2" />
-                      <span className="text-xs">Vidéo</span>
+                    <div className="relative w-full h-full">
+                      <video
+                        src={media.url}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLVideoElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <Play className="w-8 h-8 text-white" />
+                      </div>
                     </div>
                   )}
                   <div className="hidden flex flex-col items-center justify-center text-gray-500">
