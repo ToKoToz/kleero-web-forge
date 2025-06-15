@@ -9,6 +9,84 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_users: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          password_hash: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          password_hash: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          password_hash?: string
+        }
+        Relationships: []
+      }
+      automations: {
+        Row: {
+          benefits: string[]
+          complexity: string
+          created_at: string
+          description: string
+          details_description: string | null
+          details_images: string[] | null
+          details_title: string | null
+          details_video_url: string | null
+          icon_name: string
+          id: string
+          is_active: boolean
+          is_public: boolean
+          tags: string[]
+          time_gain: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          benefits: string[]
+          complexity: string
+          created_at?: string
+          description: string
+          details_description?: string | null
+          details_images?: string[] | null
+          details_title?: string | null
+          details_video_url?: string | null
+          icon_name: string
+          id?: string
+          is_active?: boolean
+          is_public?: boolean
+          tags: string[]
+          time_gain: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          benefits?: string[]
+          complexity?: string
+          created_at?: string
+          description?: string
+          details_description?: string | null
+          details_images?: string[] | null
+          details_title?: string | null
+          details_video_url?: string | null
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          is_public?: boolean
+          tags?: string[]
+          time_gain?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string
