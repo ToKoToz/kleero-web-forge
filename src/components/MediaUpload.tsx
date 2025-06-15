@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { Upload, X, Play, Image as ImageIcon } from 'lucide-react';
+import { Upload } from 'lucide-react';
+import MediaManager from './admin/MediaManager';
 
 interface MediaItem {
   id: string;
@@ -81,113 +81,42 @@ const MediaUpload: React.FC<MediaUploadProps> = ({
     }
   };
 
-  const removeMedia = async (mediaToRemove: MediaItem) => {
-    try {
-      // Supprimer de Supabase Storage
-      const filePath = `automation-media/${mediaToRemove.id}`;
-      const { error } = await supabase.storage
-        .from('automation-media')
-        .remove([filePath]);
-
-      if (error) {
-        console.error('Erreur suppression:', error);
-      }
-
-      // Retirer de la liste locale
-      onMediasChange(medias.filter(media => media.id !== mediaToRemove.id));
-      toast.success('Fichier supprimé');
-    } catch (error) {
-      console.error('Erreur:', error);
-      toast.error('Erreur lors de la suppression');
-    }
-  };
-
   return (
-    <div className="space-y-4">
-      <div>
-        <Label htmlFor="media-upload">Upload de médias (Images et Vidéos)</Label>
-        <div className="mt-2">
-          <Input
-            id="media-upload"
-            type="file"
-            multiple
-            accept={accept}
-            onChange={handleFileUpload}
-            disabled={isUploading}
-            className="cursor-pointer"
-          />
-          <p className="text-xs text-muted-foreground mt-1">
-            Formats supportés: Images (JPG, PNG, GIF, WebP) et Vidéos (MP4, WebM, MOV). 
-            Taille max: 10MB pour les images, 50MB pour les vidéos.
+    <div className="space-y-6">
+      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-gray-400 transition-colors">
+        <div className="text-center">
+          <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+          <Label htmlFor="media-upload" className="cursor-pointer">
+            <span className="text-lg font-medium text-gray-900 hover:text-gray-700">
+              Cliquez pour uploader des médias
+            </span>
+            <Input
+              id="media-upload"
+              type="file"
+              multiple
+              accept={accept}
+              onChange={handleFileUpload}
+              disabled={isUploading}
+              className="hidden"
+            />
+          </Label>
+          <p className="text-sm text-gray-500 mt-2">
+            Images (JPG, PNG, GIF, WebP) jusqu'à 10MB<br />
+            Vidéos (MP4, WebM, MOV) jusqu'à 50MB
           </p>
+          {isUploading && (
+            <p className="text-sm text-blue-600 mt-2 font-medium">
+              Upload en cours...
+            </p>
+          )}
         </div>
-        {isUploading && (
-          <p className="text-sm text-muted-foreground mt-2">
-            Upload en cours...
-          </p>
-        )}
       </div>
 
-      {medias.length > 0 && (
-        <div>
-          <Label>Médias uploadés ({medias.length})</Label>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
-            {medias.map((media) => (
-              <div key={media.id} className="relative group border rounded-lg overflow-hidden">
-                <div className="aspect-square bg-gray-100 flex items-center justify-center">
-                  {media.type === 'image' ? (
-                    <img
-                      src={media.url}
-                      alt={media.name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        target.nextElementSibling?.classList.remove('hidden');
-                      }}
-                    />
-                  ) : (
-                    <div className="relative w-full h-full">
-                      <video
-                        src={media.url}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLVideoElement;
-                          target.style.display = 'none';
-                          target.nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                        <Play className="w-8 h-8 text-white" />
-                      </div>
-                    </div>
-                  )}
-                  <div className="hidden flex flex-col items-center justify-center text-gray-500">
-                    <ImageIcon className="w-8 h-8 mb-2" />
-                    <span className="text-xs">Erreur</span>
-                  </div>
-                </div>
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Button
-                    size="sm"
-                    variant="destructive"
-                    onClick={() => removeMedia(media)}
-                    className="w-6 h-6 p-0"
-                  >
-                    <X className="w-3 h-3" />
-                  </Button>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-2">
-                  <Badge variant={media.type === 'image' ? 'default' : 'secondary'} className="text-xs">
-                    {media.type === 'image' ? 'Image' : 'Vidéo'}
-                  </Badge>
-                  <p className="text-xs truncate mt-1">{media.name}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      <MediaManager 
+        medias={medias} 
+        onMediasChange={onMediasChange} 
+        showControls={true}
+      />
     </div>
   );
 };
